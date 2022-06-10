@@ -6,9 +6,9 @@
 	    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <include file="migrations/v-1.0/20220601_create_schema_producing.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_country.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_city.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_company.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_user_role.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_user.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_company.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_product.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220601_create_table_webpage.xml" relativeToChangelogFile="true"/>
-
 </databaseChangeLog>
