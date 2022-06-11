@@ -16,5 +16,6 @@
     <include file="migrations/v-1.0/20220611_add_url_to_companies.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_create_table_data_resources.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_fill_table_data_resources.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_fill_table_roles.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
