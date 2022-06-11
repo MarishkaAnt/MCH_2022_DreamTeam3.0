@@ -14,6 +14,6 @@
 
     <include file="migrations/v-1.0/20220611_add_foreign_keys_to_users.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_add_foreign_keys_to_products.xml" relativeToChangelogFile="true"/>
-
+    <include file="migrations/v-1.0/20220611_add_url_to_companies.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
