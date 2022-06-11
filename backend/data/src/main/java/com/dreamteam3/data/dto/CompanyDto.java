@@ -12,6 +12,7 @@ public class CompanyDto {
     private Long id;
     private String name;
     private String inn;
+    private String okved;
     private String address;
 
 }
