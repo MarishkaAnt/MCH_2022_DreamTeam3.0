@@ -16,7 +16,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long company_id;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
     private String name;
     private String description;
     private Float price;

@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User buildUser(User user) {
+    public void createUser(User user) {
         User newUser = new User();
 
         newUser.setEmail(user.getEmail());
@@ -29,11 +29,7 @@ public class UserService {
         newUser.setRole(user.getRole());
         newUser.setCompany(user.getCompany());
 
-        return newUser;
-    }
-
-    public void createUser(User user) {
-        userRepository.save(buildUser(user));
+        userRepository.save(user);
     }
 
     public void deleteUser(Long id) {
@@ -50,10 +46,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateActivity(Long id, boolean enadble) {
+    public void updateActivity(Long id, boolean enable) {
         User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
-        if (user.isActive() != enadble) {
-            user.setActive(enadble);
+        if (user.isActive() != enable) {
+            user.setActive(enable);
             userRepository.save(user);
         }
     }
