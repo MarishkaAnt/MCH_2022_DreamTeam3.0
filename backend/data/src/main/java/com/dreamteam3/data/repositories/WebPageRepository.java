@@ -1,4 +1,4 @@
-package com.dreamteam3.data.repository;
+package com.dreamteam3.data.repositories;
 
 import com.dreamteam3.data.model.WebPage;
 import org.springframework.data.jpa.repository.JpaRepository;

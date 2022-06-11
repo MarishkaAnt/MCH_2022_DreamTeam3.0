@@ -1,7 +1,7 @@
 package com.dreamteam3.data.service.impl;
 
 import com.dreamteam3.data.model.WebPage;
-import com.dreamteam3.data.repository.WebPageRepository;
+import com.dreamteam3.data.repositories.WebPageRepository;
 import com.dreamteam3.data.service.WebPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.dreamteam3.data.service.impl;
 
 import com.dreamteam3.data.model.Company;
-import com.dreamteam3.data.repository.CompanyRepository;
+import com.dreamteam3.data.repositories.CompanyRepository;
 import com.dreamteam3.data.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
