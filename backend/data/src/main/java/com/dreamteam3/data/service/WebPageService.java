@@ -1,6 +1,5 @@
 package com.dreamteam3.data.service;
 
-import com.dreamteam3.data.model.Company;
 import com.dreamteam3.data.model.WebPage;
 import com.dreamteam3.data.repository.WebPageRepository;
 import lombok.RequiredArgsConstructor;
