@@ -30,7 +30,7 @@
     </changeSet>
 
     <changeSet author="sokolovmono@gmail.com" id="add_new_column_patronymic">
-        <addColumn tableName="users">
+        <addColumn tableName="users" schemaName="mosprom">
             <column name="patronymic" type="VARCHAR"/>
         </addColumn>
     </changeSet>
