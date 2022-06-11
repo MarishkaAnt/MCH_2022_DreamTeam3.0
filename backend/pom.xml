@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dreamteam3</groupId>
-    <artifactId>producing</artifactId>
+    <artifactId>mosprom</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
     <modules>
         <module>data</module>
         <module>crawler</module>
         <module>rest</module>
+        <module>company-uploader</module>
     </modules>
 
     <properties>
