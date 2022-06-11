@@ -1,6 +1,7 @@
 package com.dreamteam3.crawler.service;
 
 import com.dreamteam3.data.model.WebPage;
+import com.dreamteam3.data.service.WebPageService;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;

@@ -1,9 +1,9 @@
-package com.dreamteam3.data.services;
+package com.dreamteam3.data.service;
 
 import com.dreamteam3.data.model.Role;
 import com.dreamteam3.data.model.User;
-import com.dreamteam3.data.repositories.RoleRepository;
-import com.dreamteam3.data.repositories.UserRepository;
+import com.dreamteam3.data.repository.RoleRepository;
+import com.dreamteam3.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

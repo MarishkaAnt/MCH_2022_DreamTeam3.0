@@ -1,7 +1,7 @@
-package com.dreamteam3.data.services;
+package com.dreamteam3.data.service;
 
 import com.dreamteam3.data.model.Product;
-import com.dreamteam3.data.repositories.ProductRepository;
+import com.dreamteam3.data.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

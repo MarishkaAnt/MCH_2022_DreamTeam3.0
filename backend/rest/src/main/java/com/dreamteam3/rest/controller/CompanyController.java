@@ -1,6 +1,7 @@
 package com.dreamteam3.rest.controller;
 
 import com.dreamteam3.data.model.Company;
+import com.dreamteam3.data.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

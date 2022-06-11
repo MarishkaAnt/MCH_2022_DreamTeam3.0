@@ -1,6 +1,7 @@
 package com.dreamteam3.data.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +10,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "companies")
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Company {
 
     @Id
