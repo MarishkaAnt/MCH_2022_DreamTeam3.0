@@ -20,4 +20,6 @@ public class Company {
     private Long inn;
     private String okved;
     private String address;
+    private String url;
+
 }
