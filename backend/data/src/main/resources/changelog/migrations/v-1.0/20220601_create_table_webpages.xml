@@ -4,20 +4,23 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet author="ermilovaalena@gmail.com" id="20220601_create_table_city">
-        <createTable tableName="city" schemaName="producing">
+    <changeSet author="ermilovaalena@gmail.com" id="20220611_create_table_webpages">
+        <createTable tableName="webpages" schemaName="mosprom">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="city_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="webpage_pkey"/>
             </column>
-            <column name="name" type="VARCHAR">
+            <column name="url" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
-            <column name="country_id" type="BIGINT">
+            <column name="content" type="TEXT">
+<!--                <constraints nullable="false"/>-->
+            </column>
+            <column name="company_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
         <rollback>
-            <dropTable tableName="city" schemaName="producing"/>
+            <dropTable tableName="webpages" schemaName="mosprom"/>
         </rollback>
     </changeSet>
 

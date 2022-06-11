@@ -5,10 +5,15 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <include file="migrations/v-1.0/20220601_create_schema_producing.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_country.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_city.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_company.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220601_create_table_webpage.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_schema_mosprom.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_roles.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_users.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_companies.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_create_table_products.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220601_create_table_webpages.xml" relativeToChangelogFile="true"/>
+
+    <include file="migrations/v-1.0/20220611_add_foreign_keys_to_users.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_add_foreign_keys_to_products.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>
