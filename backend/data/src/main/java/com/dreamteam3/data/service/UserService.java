@@ -4,35 +4,28 @@ import com.dreamteam3.data.model.Role;
 import com.dreamteam3.data.model.User;
 import com.dreamteam3.data.repository.RoleRepository;
 import com.dreamteam3.data.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public void createUser(User user) {
-        User newUser = new User();
-
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setPatronymic(user.getPatronymic());
-        newUser.setActive(false);
-        newUser.setRole(user.getRole());
-        newUser.setCompany(user.getCompany());
-
-        userRepository.save(user);
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
-    public void deleteUser(Long id) {
+    public User save(User user) {
+        return userRepository.saveAndFlush(user);
+    }
+
+    public void delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
         userRepository.deleteById(id);
     }
@@ -46,11 +39,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateActivity(Long id, boolean enable) {
+    /*public void updateActivity(Long id, boolean enable) {
         User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
         if (user.isActive() != enable) {
             user.setActive(enable);
             userRepository.save(user);
         }
-    }
+    }*/
 }

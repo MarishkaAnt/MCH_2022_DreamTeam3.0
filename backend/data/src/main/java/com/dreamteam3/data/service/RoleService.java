@@ -3,17 +3,21 @@ package com.dreamteam3.data.service;
 import com.dreamteam3.data.model.Role;
 import com.dreamteam3.data.repository.RoleRepository;
 import com.dreamteam3.data.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
 public class RoleService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    public List<Role> findAll() {
+        return roleRepository.findAll();
+    }
 
     public void createRole(Role role) {
         Role newRole = new Role();
