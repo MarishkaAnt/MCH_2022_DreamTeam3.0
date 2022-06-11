@@ -39,11 +39,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateActivity(Long id, boolean enable) {
+    /*public void updateActivity(Long id, boolean enable) {
         User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
         if (user.isActive() != enable) {
             user.setActive(enable);
             userRepository.save(user);
         }
-    }
+    }*/
 }
