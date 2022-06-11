@@ -4,19 +4,19 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet author="sokolovmono@gmail.com" id="20220611-add_foreign_keys_to_users">
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="companies"
+    <changeSet author="sokolovmono@gmail.com" id="20220611-add_foreign_keys_to_products">
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="products"
                                  baseTableSchemaName="mosprom"
-                                 constraintName="fk_company_product"
+                                 constraintName="fk_product_company"
                                  referencedColumnNames="id"
-                                 referencedTableName="products"
+                                 referencedTableName="companies"
                                  referencedTableSchemaName="mosprom"
                                  validate="true"/>
         <rollback>
             <dropForeignKeyConstraint baseTableName="products"
                                       baseTableSchemaName="mosprom"
-                                      constraintName="fk_company_product"/>
+                                      constraintName="fk_product_company"/>
         </rollback>
     </changeSet>
 

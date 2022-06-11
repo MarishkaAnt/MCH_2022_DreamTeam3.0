@@ -12,8 +12,7 @@
     <include file="migrations/v-1.0/20220611_create_table_products.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220601_create_table_webpages.xml" relativeToChangelogFile="true"/>
 
-    <include file="migrations/v-1.0/20220611_add_foreign_keys_to_user.xml" relativeToChangelogFile="true"/>
-    <include file="migrations/v-1.0/20220611_add_foreign_keys_to_companies.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220611_add_foreign_keys_to_users.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_add_foreign_keys_to_products.xml" relativeToChangelogFile="true"/>
 
 
