@@ -8,32 +8,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    public void createProduct(Product product) {
-        Product newProduct = new Product();
-
-        newProduct.setName(product.getName());
-        newProduct.setCompany(product.getCompany());
-        newProduct.setDescription(product.getDescription());
-        newProduct.setPrice(product.getPrice());
-        newProduct.setActive(product.isActive());
-
-        productRepository.save(product);
+    public Product save(Product product) {
+        return productRepository.saveAndFlush(product);
     }
 
-    public void deleteProduct(Long id) {
+    public void delete(Long id) {
         Product product = productRepository.findById(id).orElseThrow(NullPointerException::new);
         productRepository.deleteById(id);
     }
 
-    public List<Product> getAllProducts(){
-        return new ArrayList<Product>(productRepository.findAll());
+    public List<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
+    }
+
+    public List<Product> findAll(){
+        return productRepository.findAll();
+    }
+
+    public Optional<Product> findById(Long id) {
+        return productRepository.findById(id);
     }
 }
