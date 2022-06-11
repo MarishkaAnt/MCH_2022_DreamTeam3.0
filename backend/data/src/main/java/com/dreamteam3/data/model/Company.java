@@ -4,13 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "companies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company {
 
-    String name;
-    Long inn;
-    String okved;
-    String address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private Long product_id;
+    private Long inn;
+    private String okved;
+    private String address;
 }
