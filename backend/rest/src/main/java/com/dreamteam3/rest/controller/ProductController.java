@@ -1,7 +1,6 @@
 package com.dreamteam3.rest.controller;
 
-import com.dreamteam3.data.dto.ProductDTO;
-import com.dreamteam3.data.service.ProductService;
+import com.dreamteam3.data.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,31 +20,41 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    //TODO набросок контроллера, ждем сервисы
+    //private final ProductService productService;
+    ProductDto productDto = ProductDto.builder()
+            .id(1L)
+            .name("Test")
+            .build();
 
     @GetMapping
-    public List<ProductDTO> findByName(@RequestParam String name) {
-        return productService.findByName(name);
+    public List<ProductDto> findByName(@RequestParam String name) {
+        return Arrays.asList(productDto);
+        //return productService.findByName(name);
     }
 
     @GetMapping("/{id}")
-    public ProductDTO findById(@PathVariable Long id) {
-        return productService.findById(id);
+    public ProductDto findById(@PathVariable Long id) {
+        return productDto;
+        //return productService.findById(id);
     }
 
     @PostMapping
-    public ProductDTO create(@RequestBody ProductDTO productDTO) {
-        return productService.save(productDTO);
+    public ProductDto create(@RequestBody ProductDto productDTO) {
+        return productDto;
+        //return productService.save(productDTO);
     }
 
     @PutMapping
-    public ProductDTO update(@RequestBody ProductDTO productDTO) {
-        return productService.save(productDTO);
+    public ProductDto update(@RequestBody ProductDto productDTO) {
+        return productDto;
+        //return productService.save(productDTO);
     }
 
     @DeleteMapping("/{id}")
     public boolean delete(Long id) {
-        return productService.delete(id);
+        return true;
+        //return productService.delete(id);
     }
 
 }

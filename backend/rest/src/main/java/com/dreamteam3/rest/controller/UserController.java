@@ -1,7 +1,6 @@
 package com.dreamteam3.rest.controller;
 
-import com.dreamteam3.data.dto.UserDTO;
-import com.dreamteam3.data.service.UserService;
+import com.dreamteam3.data.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -16,16 +16,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    //TODO набросок контроллера, ждем сервисы
+    //private final UserService userService;
+    UserDto userDto = UserDto.builder()
+            .id(1L)
+            .email("a@mail.ru")
+            .firstName("Test")
+            .build();
 
     @GetMapping
-    public List<UserDTO> findAll() {
-        return userService.findAll();
+    public List<UserDto> findAll() {
+        return Arrays.asList(userDto);
+        //return userService.findAll();
     }
 
     @PostMapping
-    public UserDTO create(@RequestBody UserDTO userDTO) {
-        return userService.save(userDTO);
+    public UserDto create(@RequestBody UserDto userDTO) {
+        return userDTO;
+        //return userService.save(userDTO);
     }
 
 }
