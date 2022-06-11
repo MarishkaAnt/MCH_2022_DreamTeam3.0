@@ -29,5 +29,5 @@ public class User {
     private String patronymic;
     private String email;
     private String password;
-    private boolean isActive;
+
 }
