@@ -17,6 +17,9 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
     private Long inn;
     private String okved;
     private String address;

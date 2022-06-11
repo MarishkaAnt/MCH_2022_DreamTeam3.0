@@ -17,8 +17,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long role_id;
-    private Long company_id;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
     private String firstName;
     private String lastName;
     private String patronymic;
