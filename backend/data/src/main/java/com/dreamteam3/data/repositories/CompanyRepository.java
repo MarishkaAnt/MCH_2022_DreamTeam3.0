@@ -11,10 +11,6 @@ import java.util.Optional;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
-    List<Company> findAll();
-
-    Optional<Company> findById(Long id);
-
     Optional<Company> findByName(String name);
 
     Optional<Company> findByInn(Long inn);

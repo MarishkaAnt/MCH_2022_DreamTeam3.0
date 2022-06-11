@@ -1,5 +1,6 @@
 package com.dreamteam3.data.services;
 
+import com.dreamteam3.data.model.Role;
 import com.dreamteam3.data.model.User;
 import com.dreamteam3.data.repositories.RoleRepository;
 import com.dreamteam3.data.repositories.UserRepository;
@@ -38,6 +39,15 @@ public class UserService {
     public void deleteUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
         userRepository.deleteById(id);
+    }
+
+    public void setUserRole(Long userId, Long roleId){
+        Role role = roleRepository.findById(roleId).orElseThrow(NullPointerException::new);
+
+        User user = userRepository.findById(userId).orElseThrow(NullPointerException::new);
+
+        user.setRole(role);
+        userRepository.save(user);
     }
 
     public void updateActivity(Long id, boolean enadble) {

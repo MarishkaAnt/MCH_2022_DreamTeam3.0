@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
@@ -17,7 +21,8 @@ public class CompanyService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Company buildCompany(Company company) {
+
+    public void createCompany(Company company) {
         Company newCompany = new Company();
 
         newCompany.setName(company.getName());
@@ -26,15 +31,17 @@ public class CompanyService {
         newCompany.setAddress(company.getAddress());
         newCompany.setProduct(company.getProduct());
 
-        return newCompany;
-    }
-
-    public void createCompany(Company company) {
-        companyRepository.save(buildCompany(company));
+        companyRepository.save(company);
     }
 
     public void deleteCompany(Long id) {
         Company company = companyRepository.findById(id).orElseThrow(NullPointerException::new);
         companyRepository.deleteById(id);
     }
+
+    public List<Company> getAllCompanies() {
+        return new ArrayList<Company>(companyRepository.findAll());
+    }
+
+
 }
