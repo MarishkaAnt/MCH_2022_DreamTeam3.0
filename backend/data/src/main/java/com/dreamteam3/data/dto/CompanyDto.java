@@ -14,5 +14,6 @@ public class CompanyDto {
     private String inn;
     private String okved;
     private String address;
+    private String url;
 
 }
