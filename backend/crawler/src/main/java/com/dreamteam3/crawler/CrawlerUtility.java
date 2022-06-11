@@ -30,6 +30,9 @@ public class CrawlerUtility implements CommandLineRunner {
     @Value("${com.dreamteam3.mosprom.crawler.parsers}")
     private int parsers;
 
+    @Value("3")
+    private int crawlerDepth;
+
     public static void main(String[] args) {
         SpringApplication.run(CrawlerUtility.class, args);
     }
@@ -37,7 +40,7 @@ public class CrawlerUtility implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String crawlStorageFolder = "/data/crawl/root";
-        int numberOfCrawlers = 1;
+        int numberOfCrawlers = 7;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);

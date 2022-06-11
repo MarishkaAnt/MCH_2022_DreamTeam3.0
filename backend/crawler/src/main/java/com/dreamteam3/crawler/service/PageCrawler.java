@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.regex.Pattern;
 
 @Slf4j
 @Component
@@ -19,10 +20,14 @@ public class PageCrawler extends WebCrawler {
 
     private final WebPageService webPageService;
 
+    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
+            + "|png|mp3|mp3|zip|gz))$");
+
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
-        //TODO добавить логику по определению, стоит ли ходить по новому адресу
-        return true;
+        String href = url.getURL().toLowerCase();
+        return !FILTERS.matcher(href).matches()
+                && href.startsWith("http://www.udarnitsa.ru/");
     }
 
     @Override

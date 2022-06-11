@@ -34,5 +34,6 @@ public class WebPageService {
     }
 
     public void save(WebPage webPage) {
+        webPageRepository.save(webPage);
     }
 }
