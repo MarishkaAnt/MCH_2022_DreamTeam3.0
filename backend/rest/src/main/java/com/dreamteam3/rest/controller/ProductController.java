@@ -1,6 +1,9 @@
 package com.dreamteam3.rest.controller;
 
 import com.dreamteam3.data.dto.ProductDto;
+import com.dreamteam3.data.mapper.ProductMapper;
+import com.dreamteam3.data.model.Product;
+import com.dreamteam3.data.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,49 +15,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
 
-    //TODO набросок контроллера, ждем сервисы
-    //private final ProductService productService;
-    ProductDto productDto = ProductDto.builder()
-            .id(1L)
-            .name("Test")
-            .build();
+    private final ProductService productService;
+    private final ProductMapper productMapper;
 
     @GetMapping
     public List<ProductDto> findByName(@RequestParam String name) {
-        return Arrays.asList(productDto);
-        //return productService.findByName(name);
+        List<Product> products = productService.findAllByName(name);
+        return products.stream()
+                .map(productMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ProductDto findById(@PathVariable Long id) {
-        return productDto;
-        //return productService.findById(id);
+    public Optional<ProductDto> findById(@PathVariable Long id) {
+        Optional<Product> product = productService.findById(id);
+        return product.map(productMapper::toDTO);
     }
 
     @PostMapping
     public ProductDto create(@RequestBody ProductDto productDTO) {
-        return productDto;
-        //return productService.save(productDTO);
+        Product product = productService.save(productMapper.toEntity(productDTO));
+        return productMapper.toDTO(product);
     }
 
     @PutMapping
     public ProductDto update(@RequestBody ProductDto productDTO) {
-        return productDto;
-        //return productService.save(productDTO);
+        Product product = productService.save(productMapper.toEntity(productDTO));
+        return productMapper.toDTO(product);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(Long id) {
-        return true;
-        //return productService.delete(id);
+    public void delete(@PathVariable Long id) {
+        productService.delete(id);
     }
 
 }
