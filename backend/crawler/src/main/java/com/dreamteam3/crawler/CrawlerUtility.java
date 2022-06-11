@@ -27,7 +27,7 @@ public class CrawlerUtility implements CommandLineRunner {
 
     private final PageCrawlerFactory pageCrawlerFactory;
 
-    @Value("${com.dreamteam3.producing.crawler.parsers}")
+    @Value("${com.dreamteam3.mosprom.crawler.parsers}")
     private int parsers;
 
     public static void main(String[] args) {
