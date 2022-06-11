@@ -12,8 +12,8 @@
     <artifactId>company-uploader</artifactId>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <springframework.version>2.7.0</springframework.version>
         <apache.poi.version>5.2.2</apache.poi.version>
         <dreamteam3.data.version>1.0.1</dreamteam3.data.version>

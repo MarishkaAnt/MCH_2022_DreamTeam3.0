@@ -35,8 +35,8 @@ public class CompanyUploader {
 
     public void upload() {
         switch (resourceType) {
-            case FILE -> uploadFromFile();
-            case DATABASE -> upladFromDatabase();
+            case FILE : uploadFromFile();
+            case DATABASE : upladFromDatabase();
         }
     }
 
