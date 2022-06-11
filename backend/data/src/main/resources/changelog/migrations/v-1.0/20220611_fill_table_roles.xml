@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet author="ermilovaalena@gmail.com" id="20220611_create_table_data_resources">
+    <changeSet author="ermilovaalena@gmail.com" id="20220611_fill_table_roles">
         <sql>
             INSERT INTO mosprom.roles (name)
             VALUES ('ADMIN'),
