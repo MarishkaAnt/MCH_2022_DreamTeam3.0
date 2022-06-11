@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "companies")
@@ -19,10 +20,10 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-    private Long inn;
+    @OneToMany
+    @JoinColumn(name = "company_id")
+    private List<Product> product;
+    private String inn;
     private String okved;
     private String address;
     private String url;

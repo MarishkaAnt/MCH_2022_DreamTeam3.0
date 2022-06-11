@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,6 +14,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     Optional<Company> findByName(String name);
 
     Optional<Company> findByInn(Long inn);
+    List<Company> findAllByInnIn(List<String> inns);
 
     Collection<Company> findAllByOkved(String okved);
 }
