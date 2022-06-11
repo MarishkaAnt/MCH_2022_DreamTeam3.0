@@ -20,8 +20,16 @@ public class PageCrawler extends WebCrawler {
 
     private final WebPageService webPageService;
 
-    private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
-            + "|png|mp3|mp3|zip|gz))$");
+    private final static Pattern FILTERS = Pattern.compile(".*(\\.(" +
+            "css|js" +
+            "|bmp|gif|jpe?g|JPE?G|png|tiff?|ico|nef|raw" +
+            "|mid|mp2|mp3|mp4|wav|wma|flv|mpe?g" +
+            "|avi|mov|mpeg|ram|m4v|wmv|rm|smil" +
+            "|pdf|doc|docx|pub|xls|xlsx|vsd|ppt|pptx" +
+            "|swf" +
+            "|zip|rar|gz|bz2|7z|bin" +
+            "|xml|txt|java|c|cpp|exe" +
+            "))$");
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
