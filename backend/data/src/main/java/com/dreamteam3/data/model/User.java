@@ -1,4 +1,4 @@
-package com.dreamteam3.rest.model;
+package com.dreamteam3.data.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,14 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
     String firstName;
-    String secondName;
-    String password;
+    String lastName;
+    String patronymic;
     String email;
+    String password;
 
 }

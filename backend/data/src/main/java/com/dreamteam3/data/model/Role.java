@@ -7,10 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
-
+public class Role {
     String name;
-    Long inn;
-    String okved;
-    String address;
 }

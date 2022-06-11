@@ -1,0 +1,23 @@
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="sokolovmono@gmail.com" id="20220611-add_foreign_keys_to_users">
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="companies"
+                                 baseTableSchemaName="mosprom"
+                                 constraintName="fk_user_company"
+                                 referencedColumnNames="company_id"
+                                 referencedTableName="users"
+                                 referencedTableSchemaName="mosprom"
+                                 validate="true"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="companies"
+                                      baseTableSchemaName="mosprom"
+                                      constraintName="fk_user_company"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
