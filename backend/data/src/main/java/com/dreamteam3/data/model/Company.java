@@ -17,7 +17,6 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long product_id;
     private Long inn;
     private String okved;
     private String address;
