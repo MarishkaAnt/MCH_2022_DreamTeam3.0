@@ -31,6 +31,11 @@
             <version>${apache.poi.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.dreamteam3</groupId>
             <artifactId>data</artifactId>
             <version>${dreamteam3.data.version}</version>
