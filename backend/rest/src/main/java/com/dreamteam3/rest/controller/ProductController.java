@@ -5,6 +5,7 @@ import com.dreamteam3.data.mapper.ProductMapper;
 import com.dreamteam3.data.model.Product;
 import com.dreamteam3.data.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     private final ProductService productService;

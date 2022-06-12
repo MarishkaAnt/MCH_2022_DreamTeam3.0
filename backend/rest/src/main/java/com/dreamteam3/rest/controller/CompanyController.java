@@ -5,6 +5,7 @@ import com.dreamteam3.data.mapper.CompanyMapper;
 import com.dreamteam3.data.model.Company;
 import com.dreamteam3.data.service.CompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/company")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class CompanyController {
 
     private final CompanyService companyService;
