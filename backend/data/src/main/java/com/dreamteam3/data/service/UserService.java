@@ -5,7 +5,7 @@ import com.dreamteam3.data.model.User;
 import com.dreamteam3.data.repository.RoleRepository;
 import com.dreamteam3.data.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +17,7 @@ public class UserService {
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -25,11 +26,12 @@ public class UserService {
     @Transactional
     public User save(User user) {
         user.setRole(roleRepository.findByName("USER"));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.saveAndFlush(user);
     }
 
     public void delete(Long id) {
-        User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
+        userRepository.findById(id).orElseThrow(NullPointerException::new);
         userRepository.deleteById(id);
     }
 
