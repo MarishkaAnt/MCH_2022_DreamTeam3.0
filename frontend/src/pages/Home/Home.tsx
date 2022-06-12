@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { searcActions, searchSelectors } from '../../store/search';
@@ -15,17 +15,19 @@ export const Home: FC = () => {
     const isSearchLoading = useSelector(searchSelectors.getIsLoading);
     const products = useSelector(searchSelectors.getProducts);
 
-    const searchHandler = () => {
+    const searchHandler = useCallback(() => {
         if (!searchValue) {
             return;
         }
 
-        dispatch(searcActions.search({
-            name: searchValue,
-            page: 1,
-            size: 20,
-        }))
-    }
+        dispatch(
+            searcActions.search({
+                name: searchValue,
+                page: 1,
+                size: 100,
+            }),
+        );
+    }, [dispatch, searchValue]);
 
     useEffect(() => {
         if (isSearchLoading) {
@@ -33,9 +35,22 @@ export const Home: FC = () => {
         }
 
         if (products.length) {
-            history.push('/search/1')
+            history.push('/search/1');
         }
-    })
+    }, [isSearchLoading, products, history]);
+
+    useEffect(() => {
+        const listener = (event: KeyboardEvent) => {
+            if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+                event.preventDefault();
+                searchHandler();
+            }
+        };
+        document.addEventListener('keydown', listener);
+        return () => {
+            document.removeEventListener('keydown', listener);
+        };
+    }, [searchHandler]);
 
     return (
         <>
@@ -46,15 +61,22 @@ export const Home: FC = () => {
                         <h2 className="main__title">Производители Москвы</h2>
                         <div className="main__search">
                             <div className="main__input-wrapper">
-                                <input type="text" className="main__input" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                                <input
+                                    type="text"
+                                    className="main__input"
+                                    value={searchValue}
+                                    onChange={(e) => setSearchValue(e.target.value)}
+                                />
                             </div>
-                            <button className="main__button" onClick={searchHandler}>Найти</button>
+                            <button className="main__button" onClick={searchHandler}>
+                                Найти
+                            </button>
                         </div>
                         {isSearchLoading && <p>Идет загрузка...</p>}
                     </div>
                 </div>
             </main>
-			<Footer />
+            <Footer />
         </>
     );
 };

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { searcActions, searchSelectors } from '../../store/search';
@@ -13,17 +13,32 @@ export const Search: FC = () => {
     const products = useSelector(searchSelectors.getProducts);
     const isSearchLoading = useSelector(searchSelectors.getIsLoading);
 
-    const searchHandler = () => {
+    const searchHandler = useCallback(() => {
         if (!searchValue) {
             return;
         }
 
-        dispatch(searcActions.search({
-            name: searchValue,
-            page: 1,
-            size: 100,
-        }))
-    }
+        dispatch(
+            searcActions.search({
+                name: searchValue,
+                page: 1,
+                size: 100,
+            }),
+        );
+    }, [dispatch, searchValue]);
+
+    useEffect(() => {
+        const listener = (event: KeyboardEvent) => {
+            if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+                event.preventDefault();
+                searchHandler();
+            }
+        };
+        document.addEventListener('keydown', listener);
+        return () => {
+            document.removeEventListener('keydown', listener);
+        };
+    }, [searchHandler]);
 
     const listCategories = ['Наименование товара', 'Производитель', 'Сайт', 'Цена', 'Описание'].map((category) =>
         <th className="search__category" key={category.toString()}>{category}</th>
