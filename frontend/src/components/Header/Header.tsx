@@ -1,18 +1,13 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import account from './../../icons/account.svg';
-import { userSelectors, userActions } from '../../store/user';
+import { userSelectors } from '../../store/user';
 
 import './Header.scss';
 
 export const Header: FC = () => {
   const isAuth = useSelector(userSelectors.getIsAuth);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(userActions.fetchUser());
-  }, [dispatch]);
 
   return (
     <header className="header">

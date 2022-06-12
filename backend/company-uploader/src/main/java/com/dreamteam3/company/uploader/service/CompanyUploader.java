@@ -11,6 +11,11 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +24,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -34,9 +40,17 @@ public class CompanyUploader {
     private final CompanyService companyService;
 
     public void upload() {
-        switch (resourceType) {
-            case FILE : uploadFromFile();
-            case DATABASE : upladFromDatabase();
+        try {
+            switch (resourceType) {
+                case FILE:
+                    uploadFromFile();
+                    break;
+                case DATABASE:
+                    uploadFromDatabase();
+                    break;
+            }
+        } catch (Exception e) {
+            log.error("", e);
         }
     }
 
@@ -101,8 +115,46 @@ public class CompanyUploader {
         companyService.saveAll(newCompanies);
     }
 
-    private void upladFromDatabase() {
+    private void uploadFromDatabase() throws IOException {
+        Document doc = Jsoup.connect(resource).get();
+        Elements companyTags = doc.select("label");
 
+        for (Element element : companyTags) {
+            List<Node> nodes = element.childNodes();
+            if (nodes.stream()
+                    .anyMatch(node -> node.nodeName().equals("span") && node.hasAttr("status_0"))) {
+                continue;
+            }
+
+            Optional<Node> info = nodes.stream()
+                    .filter(node -> node.nodeName().equals("span") && !node.hasAttr("status_0"))
+                    .findAny();
+            if (info.isEmpty()) {
+                continue;
+            }
+            Company.CompanyBuilder builder = Company.builder();
+            builder.okved("");
+            List<Node> details = info.get().childNodes();
+            for (Node node : details) {
+                if (node.toString().startsWith("ИНН")) {
+                    builder.inn(node.toString());
+                } else if (node.toString().startsWith("адрес")) {
+                    builder.address(node.toString());
+                } else if (!node.toString().equals("<br>")) {
+                    builder.name(node.toString());
+                }
+            }
+
+            Optional<Node> link = nodes.stream()
+                    .filter(node -> node.nodeName().equals("a"))
+                    .findAny();
+            if (link.isPresent()) {
+                builder.url(link.get().attr("href"));
+            }
+
+            Company company = builder.build();
+            companyService.save(company);
+        }
     }
 
 }
