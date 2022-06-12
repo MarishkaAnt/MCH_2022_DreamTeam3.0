@@ -37,7 +37,7 @@ npm start
 
 ### Начальная настройка backend
 
-### База данных Postgres
+### СУБД PostreSQL
 
 Устанавливаем PostreSQL
 
