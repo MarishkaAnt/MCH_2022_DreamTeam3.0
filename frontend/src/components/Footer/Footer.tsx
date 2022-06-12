@@ -10,7 +10,7 @@ export const Footer: FC = () => {
         <div className="footer__content">
           <Link to={'/'} className="profile__link">
             <div className="footer__logo">
-              <p>Название сайта</p>
+              <p>Моспром Импортозамещение</p>
             </div>
           </Link>
         </div>

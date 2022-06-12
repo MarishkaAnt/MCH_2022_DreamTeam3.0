@@ -20,7 +20,7 @@ export const Header: FC = () => {
         <div className="header__content">
           <Link to={'/'} className="profile__link">
             <div className="header__logo">
-              <p>Название сайта</p>
+              <p>Моспром Импортозамещение</p>
             </div>
           </Link>
           <div className="header__profile profile">
