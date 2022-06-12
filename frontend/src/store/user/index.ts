@@ -30,6 +30,7 @@ const initialState: UserState = {
 
 export const userSelectors = {
     getUser: (state: RootState) => state.userReducer.user,
+    getIsLoading: (state: RootState) => state.userReducer.isLoading,
     getIsAuth: (state: RootState) => !!state.userReducer.user.id,
 };
 
@@ -40,10 +41,6 @@ export const userActions = {
             email,
             password,
         });
-
-		if (response.status === 200) {
-            localStorage.setItem('token', '1');
-        }
 
         return response.data;
     }),
@@ -56,10 +53,6 @@ export const userActions = {
             email,
             password,
         });
-
-        if (response.status === 200) {
-            localStorage.setItem('token', '1');
-        }
 
         return response.data;
     }),

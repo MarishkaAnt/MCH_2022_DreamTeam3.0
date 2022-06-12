@@ -1,13 +1,6 @@
-type TUserRole = "user" | "admin" | "company";
+import { TCompany } from './../types';
 
-type TUserCompany = {
-	id: number;
-	name: string;
-	inn: string;
-	okved: string;
-	address: string;
-	url: string;
-}
+type TUserRole = "user" | "admin" | "company";
 
 export interface IUser { 
 	id: number;
@@ -18,5 +11,5 @@ export interface IUser {
 	role: {
 		name: TUserRole;
 	};
-	company?: TUserCompany;
+	company?: TCompany;
 }
