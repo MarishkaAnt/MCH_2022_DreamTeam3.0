@@ -28,8 +28,8 @@ public class ProductController {
     private final ProductMapper productMapper;
 
     @GetMapping
-    public List<ProductDto> findByName(@RequestParam String name) {
-        List<Product> products = productService.findAllByName(name);
+    public List<ProductDto> findByName(@RequestParam String name, @RequestParam int page, @RequestParam int size) {
+        List<Product> products = productService.findAllByName(name, page, size);
         return products.stream()
                 .map(productMapper::toDTO)
                 .collect(Collectors.toList());
