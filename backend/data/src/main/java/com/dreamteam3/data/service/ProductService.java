@@ -29,7 +29,7 @@ public class ProductService {
 
     public List<Product> findAllByName(String name, int pageNumber, int size) {
         Pageable page = PageRequest.of(pageNumber, size);
-        List<Product> products = productRepository.findAllByNameContains(name, page);
+        List<Product> products = productRepository.findAllByNameContainsIgnoreCase(name, page);
         if (!products.isEmpty()) {
             return products;
         }

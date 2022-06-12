@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface WebPageRepository extends JpaRepository<WebPage, Long> {
 
-    List<WebPage> findAllByTitleContains(String title, Pageable pageable);
+    List<WebPage> findAllByTitleContainsIgnoreCase(String title, Pageable pageable);
 
 }
