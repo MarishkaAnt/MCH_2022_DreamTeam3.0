@@ -1,7 +1,6 @@
 package com.dreamteam3.company.uploader.service;
 
 import com.dreamteam3.company.uploader.enums.ResourceType;
-import com.dreamteam3.company.uploader.factory.PageCrawlerFactory;
 import com.dreamteam3.data.model.Company;
 import com.dreamteam3.data.service.CompanyService;
 import lombok.Data;
@@ -39,7 +38,6 @@ public class CompanyUploader {
     private String resource;
 
     private final CompanyService companyService;
-    private final PageCrawlerFactory pageCrawlerFactory;
 
     public void upload() {
         try {
