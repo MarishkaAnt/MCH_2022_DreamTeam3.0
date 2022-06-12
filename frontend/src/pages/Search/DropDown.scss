@@ -1,0 +1,54 @@
+@import 'src/styles/mixins';
+@import 'src/styles/variables';
+
+.opened {
+  border: 1px solid #747474;
+  border-radius: 8px;
+  width: 230px;
+  height: 40px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+$color-blue: #2998ff;
+
+.dropdown {
+  flex-grow: 1;
+
+  &__container {
+    &_opened {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      border: 1px solid #747474;
+      border-radius: 8px;
+      width: 230px;
+      height: 40px;
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+    }
+
+    &_closed {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      border: 1px solid #747474;
+      border-radius: 8px;
+      width: 230px;
+      height: 212px;
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+    }
+  }
+
+  &__filter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
