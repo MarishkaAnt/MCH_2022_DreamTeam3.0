@@ -43,6 +43,8 @@ npm start
 
 Добавляем базу данных
 
+### Maven
+
 Устанавливаем maven
 
 ```sh
@@ -52,6 +54,7 @@ cd mosprom/backend/
 # билдим проект
 mvn clean package
 ```
+### IntelliJ IDEA
 
 Устанавливаем IntelliJ IDEA Ultimate Edition
 (с запуском из командной строки разобраться не удалось быстро)
