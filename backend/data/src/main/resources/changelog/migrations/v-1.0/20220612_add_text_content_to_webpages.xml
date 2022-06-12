@@ -8,8 +8,12 @@
         <addColumn tableName="webpages" schemaName="mosprom">
             <column name="text" type="TEXT"/>
         </addColumn>
+        <addColumn tableName="webpages" schemaName="mosprom">
+            <column name="title" type="VARCHAR"/>
+        </addColumn>
         <rollback>
             <dropColumn tableName="webpages" schemaName="mosprom" columnName="text"/>
+            <dropColumn tableName="webpages" schemaName="mosprom" columnName="title"/>
         </rollback>
     </changeSet>
 
