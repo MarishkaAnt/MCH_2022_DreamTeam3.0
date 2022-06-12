@@ -2,12 +2,7 @@ package com.dreamteam3.crawler;
 
 import com.dreamteam3.crawler.factory.PageCrawlerFactory;
 
-import edu.uci.ics.crawler4j.crawler.CrawlConfig;
-import edu.uci.ics.crawler4j.crawler.CrawlController;
-import edu.uci.ics.crawler4j.crawler.WebCrawler;
-import edu.uci.ics.crawler4j.fetcher.PageFetcher;
-import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
-import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
+import com.dreamteam3.crawler.service.PageCrawler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(scanBasePackages = {
         "com.dreamteam3.data",
@@ -36,33 +35,15 @@ public class CrawlerUtility implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String crawlStorageFolder = "/data/crawl/root";
-        int numberOfCrawlers = 1;
+        ExecutorService executorService = Executors.newFixedThreadPool(parsers);
+        for (int i = 0; i < parsers; i++) {
+            PageCrawler pageCrawler = pageCrawlerFactory.getPageCrawler();
+            executorService.submit(pageCrawler);
+        }
 
-        CrawlConfig config = new CrawlConfig();
-        config.setCrawlStorageFolder(crawlStorageFolder);
-
-        // Instantiate the controller for this crawl.
-        PageFetcher pageFetcher = new PageFetcher(config);
-        RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
-        RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
-        CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
-
-        //TODO получить порцию компаний из БД (предлагаю хранить размер порции в пропертях)
-        // грузить все сразу не получится, т.к. может быть очень много записей в таблице компаний
-        // далее запускаем блокирующую очередь, в нее добавляем ссылки для парсинга и запускаем несколько парсеров
-        // количество парсеров тоже хранится в пропертях, они разгребают очередь, и парсят ссылки
-
-        // For each crawl, you need to add some seed urls. These are the first
-        // URLs that are fetched and then the crawler starts following links
-        // which are found in these pages
-        controller.addSeed("http://www.udarnitsa.ru/");
-
-        // The factory which creates instances of crawlers.
-        CrawlController.WebCrawlerFactory<WebCrawler> factory = pageCrawlerFactory::getPageCrawler;
-
-        // Start the crawl. This is a blocking operation, meaning that your code
-        // will reach the line after this only when crawling is finished.
-        controller.start(factory, numberOfCrawlers);
+        boolean isFinished = executorService.awaitTermination(1, TimeUnit.MINUTES);
+        if (!isFinished) {
+            executorService.shutdown();
+        }
     }
 }
