@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findAllByNameContains(String name, Pageable pageable);
+    List<Product> findAllByNameContainsIgnoreCase(String name, Pageable pageable);
 
 }
