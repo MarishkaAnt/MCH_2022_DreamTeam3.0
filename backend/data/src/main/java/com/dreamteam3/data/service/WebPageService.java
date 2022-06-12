@@ -33,6 +33,11 @@ public class WebPageService {
         return new ArrayList<WebPage>(webPageRepository.findAll());
     }
 
-    public void save(WebPage webPage) {
+    public WebPage save(WebPage webPage) {
+        return webPageRepository.saveAndFlush(webPage);
+    }
+
+    public List<WebPage> saveAll(List<WebPage> webPages) {
+        return webPageRepository.saveAllAndFlush(webPages);
     }
 }

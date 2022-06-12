@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,12 +21,17 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
-    @JoinColumn(name = "company_id")
-    private List<Product> product;
     private String inn;
     private String okved;
     private String address;
     private String url;
+
+    @OneToMany
+    @JoinColumn(name = "company_id")
+    private List<Product> products;
+
+    @OneToMany
+    @JoinColumn(name = "company_id")
+    private List<WebPage> webPages;
 
 }

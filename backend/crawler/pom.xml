@@ -24,9 +24,9 @@
             <version>2.7.0</version>
         </dependency>
         <dependency>
-            <groupId>edu.uci.ics</groupId>
-            <artifactId>crawler4j</artifactId>
-            <version>4.4.0</version>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.15.1</version>
         </dependency>
         <dependency>
             <groupId>com.dreamteam3</groupId>
