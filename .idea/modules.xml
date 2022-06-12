@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MCH_2022_DreamTeam3.0.iml" filepath="$PROJECT_DIR$/.idea/MCH_2022_DreamTeam3.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/company-uploader/company-uploader.iml" filepath="$PROJECT_DIR$/backend/company-uploader/company-uploader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/crawler/crawler.iml" filepath="$PROJECT_DIR$/backend/crawler/crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/data/data.iml" filepath="$PROJECT_DIR$/backend/data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/producing.iml" filepath="$PROJECT_DIR$/backend/producing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/rest/rest.iml" filepath="$PROJECT_DIR$/backend/rest/rest.iml" />
+    </modules>
+  </component>
+</project>

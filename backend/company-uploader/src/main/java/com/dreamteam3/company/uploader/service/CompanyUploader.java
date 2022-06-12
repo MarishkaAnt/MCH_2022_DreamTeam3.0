@@ -137,9 +137,9 @@ public class CompanyUploader {
             List<Node> details = info.get().childNodes();
             for (Node node : details) {
                 if (node.toString().startsWith("ИНН")) {
-                    builder.inn(node.toString());
+                    builder.inn(node.toString().replace("ИНН: ", ""));
                 } else if (node.toString().startsWith("адрес")) {
-                    builder.address(node.toString());
+                    builder.address(node.toString().replace("адрес: ", ""));
                 } else if (!node.toString().equals("<br>")) {
                     builder.name(node.toString());
                 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="liquibaseDirectory" value="changelog" />
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="updateChangeLogPath" value="backend/data/src/main/resources/changelog/changelog-master.xml" />
+    <option name="updateDbConnectionName" value="a195acba-9eaa-46d8-b3c1-f72af41bfdf5" />
+  </component>
+</project>
