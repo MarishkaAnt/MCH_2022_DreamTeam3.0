@@ -15,6 +15,8 @@ export interface IUser {
 	lastName: string;
 	patronymic: string;
 	email: string;
-	role: TUserRole;
+	role: {
+		name: TUserRole;
+	};
 	company?: TUserCompany;
 }
