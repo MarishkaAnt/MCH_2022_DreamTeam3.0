@@ -17,5 +17,7 @@
     <include file="migrations/v-1.0/20220611_create_table_data_resources.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_fill_table_data_resources.xml" relativeToChangelogFile="true"/>
     <include file="migrations/v-1.0/20220611_fill_table_roles.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220612_add_foreign_keys_to_webpages.xml" relativeToChangelogFile="true"/>
+    <include file="migrations/v-1.0/20220612_add_text_content_to_webpages.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
