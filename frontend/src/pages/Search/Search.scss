@@ -64,6 +64,7 @@ $color-blue: #2998ff;
         width: 24px;
         height: 24px;
         left: 8px;
+        background-image: url(./../../icons/search.svg);
       }
     }
   }
@@ -71,6 +72,7 @@ $color-blue: #2998ff;
   &__table {
     border-collapse: collapse;
     border-spacing: 0;
+    margin-top: 50px;
   }
 
   &__category {
