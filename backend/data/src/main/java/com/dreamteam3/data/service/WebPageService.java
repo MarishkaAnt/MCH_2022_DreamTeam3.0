@@ -36,7 +36,7 @@ public class WebPageService {
 
     public List<WebPage> findAllByTitle(String text, int pageNumber, int size) {
         Pageable page = PageRequest.of(pageNumber, size);
-        return webPageRepository.findAllByTitleContains(text, page);
+        return webPageRepository.findAllByTitleContainsIgnoreCase(text, page);
     }
 
 }
