@@ -84,6 +84,7 @@ public class PageCrawler implements Callable<Boolean> {
                 .url(url)
                 .html(doc.html())
                 .text(doc.text())
+                .title(doc.title())
                 .build();
         webPages.add(webPage);
 
