@@ -27,6 +27,7 @@ public class WebPage {
     private String url;
     private String html;
     private String text;
+    private String title;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

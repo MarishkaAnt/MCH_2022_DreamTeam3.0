@@ -23,7 +23,7 @@ export const Home: FC = () => {
         dispatch(
             searcActions.search({
                 name: searchValue,
-                page: 1,
+                page: 0,
                 size: 100,
             }),
         );
@@ -35,7 +35,7 @@ export const Home: FC = () => {
         }
 
         if (products.length) {
-            history.push('/search/1');
+            history.push('/search/0');
         }
     }, [isSearchLoading, products, history]);
 

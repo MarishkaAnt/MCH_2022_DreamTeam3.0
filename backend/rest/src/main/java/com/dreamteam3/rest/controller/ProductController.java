@@ -5,6 +5,7 @@ import com.dreamteam3.data.mapper.ProductMapper;
 import com.dreamteam3.data.model.Product;
 import com.dreamteam3.data.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +23,15 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     private final ProductService productService;
     private final ProductMapper productMapper;
 
     @GetMapping
-    public List<ProductDto> findByName(@RequestParam String name) {
-        List<Product> products = productService.findAllByName(name);
+    public List<ProductDto> findByName(@RequestParam String name, @RequestParam int page, @RequestParam int size) {
+        List<Product> products = productService.findAllByName(name, page, size);
         return products.stream()
                 .map(productMapper::toDTO)
                 .collect(Collectors.toList());
