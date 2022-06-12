@@ -20,7 +20,7 @@ export const Search: FC = () => {
 
         dispatch(searcActions.search({
             name: searchValue,
-            page: 1,
+            page: 0,
             size: 100,
         }))
     }
