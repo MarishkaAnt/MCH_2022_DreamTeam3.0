@@ -12,9 +12,7 @@
             <column name="url" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
-            <column name="content" type="TEXT">
-<!--                <constraints nullable="false"/>-->
-            </column>
+            <column name="html" type="TEXT"/>
             <column name="company_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
