@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.Jsoup;
@@ -65,7 +66,6 @@ public class CompanyUploader {
             for (Row row : sheet) {
 
                 Company.CompanyBuilder builder = Company.builder();
-                //TODO подумать, что делать, если в файле нет данных
                 builder.okved("");
                 builder.address("");
 
@@ -86,7 +86,7 @@ public class CompanyUploader {
                     int columnIndex = cell.getColumnIndex();
                     switch (columnIndex) {
                         case 1:
-                            builder.inn(value);
+                            builder.inn(((XSSFCell) cell).getCTCell().getV());
                             break;
                         case 2:
                             builder.name(value);
