@@ -1,0 +1,21 @@
+$containerWidth: 1280px;
+$tabletWidth: 768px;
+$phoneWidth: 425px;
+
+@mixin container() {
+	max-width: $containerWidth;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+@mixin tablet() {
+	@media (max-width: $tabletWidth) {
+		@content;
+	}
+}
+
+@mixin phone() {
+	@media (max-width: $phoneWidth) {
+		@content;
+	}
+}
