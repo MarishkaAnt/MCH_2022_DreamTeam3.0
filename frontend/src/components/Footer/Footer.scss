@@ -1,0 +1,30 @@
+@import 'src/styles/mixins';
+@import 'src/styles/variables';
+
+.footer {
+	background: #A6A6A6;
+	color: $color-white;
+
+	&__container {
+		@include container();
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		min-height: 75px;
+	}
+
+	&__logo {
+		font-size: 20px;
+	}
+
+	&__link {
+		color: $color-white;
+
+		&:hover {
+			color: darken($color-white, 10%);
+		}
+	}
+}
