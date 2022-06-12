@@ -36,6 +36,7 @@ public class CompanyUploader {
 
     private ResourceType resourceType;
     private String resource;
+    private int pageCounter = 1;
 
     private final CompanyService companyService;
 
@@ -46,7 +47,7 @@ public class CompanyUploader {
                     uploadFromFile();
                     break;
                 case DATABASE:
-                    uploadFromDatabase();
+                    uploadFromDatabase(resource);
                     break;
             }
         } catch (Exception e) {
@@ -115,14 +116,14 @@ public class CompanyUploader {
         companyService.saveAll(newCompanies);
     }
 
-    private void uploadFromDatabase() throws IOException {
-        Document doc = Jsoup.connect(resource).get();
+    private void uploadFromDatabase(String nextLink) throws IOException {
+        Document doc = Jsoup.connect(nextLink).get();
         Elements companyTags = doc.select("label");
 
         for (Element element : companyTags) {
             List<Node> nodes = element.childNodes();
             if (nodes.stream()
-                    .anyMatch(node -> node.nodeName().equals("span") && node.hasAttr("status_0"))) {
+                    .anyMatch(node -> node.nodeName().equals("span") && node.hasAttr("class") && node.attr("class", "status_0").toString().contains("не действующее"))) {
                 continue;
             }
 
@@ -134,6 +135,8 @@ public class CompanyUploader {
             }
             Company.CompanyBuilder builder = Company.builder();
             builder.okved("");
+            builder.inn("");
+            builder.address("");
             List<Node> details = info.get().childNodes();
             for (Node node : details) {
                 if (node.toString().startsWith("ИНН")) {
@@ -155,6 +158,20 @@ public class CompanyUploader {
             Company company = builder.build();
             companyService.save(company);
         }
-    }
 
+        Elements select = doc.select("a[href]");
+
+        pageCounter++;
+        Optional<String> href = select.stream()
+                .map(s -> s.attr("abs:href"))
+                .filter(s -> s.startsWith(resource+"&page="+pageCounter))
+                .findFirst();
+
+        if (href.isEmpty()) {
+            return;
+        }
+
+        uploadFromDatabase(href.get());
+
+    }
 }
