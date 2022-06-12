@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.Jsoup;
@@ -40,6 +41,8 @@ public class CompanyUploader {
 
     private final CompanyService companyService;
 
+    private final List<Company> companies = new ArrayList<>();
+
     public void upload() {
         try {
             switch (resourceType) {
@@ -56,8 +59,6 @@ public class CompanyUploader {
     }
 
     private void uploadFromFile() {
-        List<Company> companies = new ArrayList<>();
-
         try (FileInputStream file = new FileInputStream(new File(resource));
              XSSFWorkbook workbook = new XSSFWorkbook(file);) {
 
@@ -65,7 +66,6 @@ public class CompanyUploader {
             for (Row row : sheet) {
 
                 Company.CompanyBuilder builder = Company.builder();
-                //TODO подумать, что делать, если в файле нет данных
                 builder.okved("");
                 builder.address("");
 
@@ -86,7 +86,7 @@ public class CompanyUploader {
                     int columnIndex = cell.getColumnIndex();
                     switch (columnIndex) {
                         case 1:
-                            builder.inn(value);
+                            builder.inn(((XSSFCell) cell).getCTCell().getV());
                             break;
                         case 2:
                             builder.name(value);
@@ -116,7 +116,7 @@ public class CompanyUploader {
         companyService.saveAll(newCompanies);
     }
 
-    private void uploadFromDatabase(String nextLink) throws IOException {
+    private void uploadFromDatabase(String nextLink) throws IOException, InterruptedException {
         Document doc = Jsoup.connect(nextLink).get();
         Elements companyTags = doc.select("label");
 
@@ -156,8 +156,10 @@ public class CompanyUploader {
             }
 
             Company company = builder.build();
-            companyService.save(company);
+            companies.add(company);
         }
+        companyService.saveAll(companies);
+        companies.clear();
 
         Elements select = doc.select("a[href]");
 
@@ -166,11 +168,11 @@ public class CompanyUploader {
                 .map(s -> s.attr("abs:href"))
                 .filter(s -> s.startsWith(resource+"&page="+pageCounter))
                 .findFirst();
-
         if (href.isEmpty()) {
             return;
         }
 
+        Thread.sleep(200);
         uploadFromDatabase(href.get());
 
     }
