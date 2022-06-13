@@ -152,7 +152,7 @@ public class CompanyUploader {
                     .filter(node -> node.nodeName().equals("a"))
                     .findAny();
             if (link.isPresent()) {
-                builder.url(link.get().attr("href"));
+                builder.url(link.get().attr("abs:href"));
             }
 
             Company company = builder.build();
